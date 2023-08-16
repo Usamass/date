@@ -1,10 +1,9 @@
 #ifndef DATE_H
 #define DATE_H
-#include<iostream>
-enum week {Non,Mon,Tue,Wed,Thu,Fri,Sat,Sun};
-class date{
+enum week {Mon = 1,Tue,Wed,Thu,Fri,Sat,Sun};
+class Date{
 public:
-    date(int,int,int,week);
+    Date(int day ,int month ,int year ,week dayOfWeak);
     void operator++();
     void operator--();
     void operator+=(int);
@@ -18,22 +17,11 @@ private:
     char* monthPtr;
     int* dayofMonthPtr;
     char* dayOfWeekPtr;
-    static  char* MONTHS[];
-    static  char* DAYS[];
+    static  char* const MONTHS[];
+    static  char* const DAYS[];
     bool isLeapYear(int);
 
 };
-int date::dDay = 01;
-int date::dMonth = 01;
-int date::dYear = 2000;
-char* date::DAYS[] = {"", "Mon", "Tue", "Wed",
-"Thr", "Fri", "Sat",
-"Sun"};
-char* date::MONTHS[] = {
-"", "Jan", "Fab", "Mar",
-"Apr", "May", "Jun",
-"Jul", "Aug", "Sep",
-"Oct", "Nov",
-"Dec"};
+
 
 #endif // M_H_INCLUDED

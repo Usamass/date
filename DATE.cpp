@@ -1,6 +1,21 @@
 #include "DATE.h"
-//#include <iostream>
-date::date(int day ,int month , int year ,week w ){
+#include <iostream>
+// initialization of static date members
+int Date::dDay = 01;
+int Date::dMonth = 01;
+int Date::dYear = 2000;
+char* const Date::DAYS[] = {"", "Mon", "Tue", "Wed",
+"Thr", "Fri", "Sat",
+"Sun"};
+char* const Date::MONTHS[] = {
+"", "Jan", "Fab", "Mar",
+"Apr", "May", "Jun",
+"Jul", "Aug", "Sep",
+"Oct", "Nov",
+"Dec"};
+
+
+Date::Date(int day ,int month , int year ,week w ){
     dayOfWeekPtr = DAYS[w];
     DOW = w;
 
@@ -23,7 +38,7 @@ date::date(int day ,int month , int year ,week w ){
     if(day > dayOfMonths[month])
         Day = dayOfMonths[month];
 }
-void date::operator++(){
+void Date::operator++(){
 
     DOW++;
     if(DOW > 7){
@@ -44,7 +59,7 @@ void date::operator++(){
             dayofMonthPtr = dayOfMonths+Month;
     }
 }
-void date::operator--(){
+void Date::operator--(){
 
     DOW--;
     if(DOW < 1){
@@ -67,19 +82,19 @@ void date::operator--(){
             dayofMonthPtr = dayOfMonths+Month;
     }
 }
-void date::operator+=(int Inc){
+void Date::operator+=(int Inc){
     for(int i =1; i<=Inc; i++){++*(this);}
 }
-void date::operator-=(int Dec){
+void Date::operator-=(int Dec){
     for(int j =1; j<=Dec; j++){--*(this);}
 }
-bool date::isLeapYear(int isleap){
+bool Date::isLeapYear(int isleap){
     if (((isleap % 4 == 0) && (isleap % 100 != 0)) || (isleap % 400 == 0))
         return 1;
     else
         return 0;
 }
-void date::showDate()const{
+void Date::showDate()const{
         std::cout<<Day<<'/'<<Month<<'/'<<Year
         <<std::endl<<dayOfWeekPtr<<'/'<<*dayofMonthPtr<<'/'<<monthPtr;
 }
